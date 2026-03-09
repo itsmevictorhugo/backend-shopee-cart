@@ -22,14 +22,21 @@ async function deleteItem(userCart, nameItem) {
 }
 
 // -> Remover um item - diminui um item
-async function removeItem(userCart, index) {}
+async function removeItem(userCart, index) {
+  // transforma o índice visual do usuário, para o índice do backend
+  const deleteIndex = index - 1;
+  // maior que zero e se é menor que o tamanho do carrinho
+  if(index >= 0 && index < userCart.length) {
+    userCart.splice(deleteIndex, 1)
+  }
+}
 
 async function displayCart(userCart) {
   console.log('\nShopee cart list:');
   userCart.forEach((item, index) => {
     console.log(`${index + 1}. ${item.name} - R$${item.price} | ${item.quantity}x | Subtotal ${item.subtotal()}`);
   });
-  
+
 }
 
 export {
